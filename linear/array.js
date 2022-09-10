@@ -31,11 +31,3 @@ class NewArray {
     if (this.#list.length === 0) throw new Error("array is empty.");
   }
 }
-
-let array = new NewArray(3);
-
-array.add(10);
-array.add(100);
-array.add(1000);
-
-console.log(array.getAll());

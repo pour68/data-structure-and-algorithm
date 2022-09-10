@@ -1,0 +1,22 @@
+{
+  "name": "data-structure-and-algorithm",
+  "version": "1.0.0",
+  "description": "---",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pour68/data-structure-and-algorithm.git"
+  },
+  "author": "Pouria Nayeb",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pour68/data-structure-and-algorithm/issues"
+  },
+  "homepage": "https://github.com/pour68/data-structure-and-algorithm#readme",
+  "devDependencies": {
+    "jest": "^29.0.2"
+  }
+}
