@@ -12,15 +12,19 @@ class NewArray {
   }
 
   remove() {
-    checkIfArrayIsEmpty();
+    this.checkIfArrayIsEmpty();
 
-    this.#list.pop(item);
+    this.#list.pop();
   }
 
   getLatestItem() {
-    checkIfArrayIsEmpty();
+    this.checkIfArrayIsEmpty();
 
     return this.#list[this.#list.length - 1];
+  }
+
+  atIndex(index) {
+    return this.#list[index];
   }
 
   getAll() {
@@ -31,3 +35,12 @@ class NewArray {
     if (this.#list.length === 0) throw new Error("array is empty.");
   }
 }
+
+let array = new NewArray(4);
+
+array.add(1);
+array.add(1);
+array.add(1);
+array.remove();
+
+console.log(array.getAll());

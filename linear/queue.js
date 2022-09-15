@@ -2,38 +2,44 @@ class Queue {
   #list;
   constructor() {
     this.#list = [];
+    this.length = 0;
   }
 
-  enqueue(value) {
-    return this.#list.push(value);
+  enqueue(element) {
+    this.#list.push(element);
+
+    this.length++;
   }
 
   dequeue() {
-    this.checkIfQueueIsEmpty();
+    if (this.#isEmpty()) return null;
 
-    return this.#list.shift();
+    this.#list.shift();
+
+    this.length--;
   }
 
-  getFirstElementInQueue() {
-    this.checkIfQueueIsEmpty();
+  contains() {
+    let isFind = false;
 
-    return this.#list[this.#list.length - 1];
+    for (let i = 0; i < this.#list.length; i++)
+      if (this.#list[i] === element) isFind = true;
+
+    return isFind;
   }
 
-  getByIndex(index) {
-    this.checkIfQueueIsEmpty();
-
-    if (this.#list.length <= index) throw new Error("Please enter valid index");
-
-    return this.#list[index];
+  #isEmpty() {
+    return this.#list.length === 0;
   }
 
-  getAll() {
-    return this.#list;
-  }
+  print() {
+    let container = "";
 
-  checkIfQueueIsEmpty() {
-    if (this.#list.length === 0) throw new Error("List is empty.");
+    for (let i = 0; i < this.length; i++) {
+      container += `${this.#list[i]} -> `;
+    }
+
+    return container;
   }
 }
 
@@ -43,6 +49,8 @@ queue.enqueue(10);
 queue.enqueue(100);
 queue.enqueue(1000);
 
-console.log(queue.dequeue());
-console.log(queue.dequeue());
-console.log(queue.dequeue());
+queue.dequeue();
+queue.dequeue();
+queue.dequeue();
+
+console.log(queue.print());

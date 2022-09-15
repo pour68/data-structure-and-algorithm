@@ -2,43 +2,45 @@ class Stack {
   #list;
   constructor() {
     this.#list = [];
+    this.length = 0;
   }
 
-  push(value) {
-    return this.#list.push(value);
+  push(element) {
+    this.#list.push(element);
+
+    this.length++;
   }
 
   pop() {
-    this.checkIfStackIsEmpty();
+    if (this.#isEmpty()) throw new Error("stack is empty.");
 
-    return this.#list.pop();
+    this.#list.pop();
+
+    this.length--;
   }
 
-  getByIndex(index) {
-    this.checkIfStackIsEmpty();
+  contains(element) {
+    let isFind = false;
 
-    if (this.#list.length <= index) throw new Error("Please enter valid index");
+    for (let i = 0; i < this.#list.length; i++)
+      if (this.#list[i] === element) isFind = true;
 
-    return this.#list[index];
+    return isFind;
   }
 
-  getLatestValue() {
-    this.checkIfStackIsEmpty();
+  print() {
+    let container = "";
 
-    return this.#list[this.#list.length - 1];
+    for (let i = 0; i < this.length; i++) {
+      container += `${this.#list[i]} -> `;
+    }
+
+    return container;
   }
 
-  getAll() {
-    return this.#list;
-  }
-
-  checkIfStackIsEmpty() {
-    if (this.#list.length === 0) throw new Error("List is empty.");
+  #isEmpty() {
+    return this.#list.length === 0;
   }
 }
 
-const stack = new Stack();
-stack.push(10);
-stack.push(100);
-
-console.log(stack.pop());
+module.exports = Stack;
