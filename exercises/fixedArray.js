@@ -1,4 +1,4 @@
-class NewArray {
+class FixedArray {
   #list;
   constructor(count) {
     this.#list = [];
@@ -35,12 +35,3 @@ class NewArray {
     if (this.#list.length === 0) throw new Error("array is empty.");
   }
 }
-
-let array = new NewArray(4);
-
-array.add(1);
-array.add(1);
-array.add(1);
-array.remove();
-
-console.log(array.getAll());
