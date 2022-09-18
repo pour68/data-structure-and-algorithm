@@ -19,7 +19,7 @@ class Queue {
     this.length--;
   }
 
-  contains() {
+  contains(element) {
     let isFind = false;
 
     for (let i = 0; i < this.#list.length; i++)

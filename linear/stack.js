@@ -19,6 +19,12 @@ class Stack {
     this.length--;
   }
 
+  peek() {
+    if (this.#isEmpty()) throw new Error("stack is empty.");
+
+    return this.#list[this.length - 1];
+  }
+
   contains(element) {
     let isFind = false;
 
