@@ -12,13 +12,13 @@ class FixedArray {
   }
 
   remove() {
-    this.checkIfArrayIsEmpty();
+    this.#checkIfArrayIsEmpty();
 
     this.#list.pop();
   }
 
   getLatestItem() {
-    this.checkIfArrayIsEmpty();
+    this.#checkIfArrayIsEmpty();
 
     return this.#list[this.#list.length - 1];
   }
@@ -31,7 +31,7 @@ class FixedArray {
     return this.#list;
   }
 
-  checkIfArrayIsEmpty() {
+  #checkIfArrayIsEmpty() {
     if (this.#list.length === 0) throw new Error("array is empty.");
   }
 }

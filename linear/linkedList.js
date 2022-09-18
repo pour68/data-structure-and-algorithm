@@ -39,16 +39,16 @@ class LinkedList {
     return current;
   }
 
-  insertAt(index, element) {
+  insertAt(index, value) {
     this.length++;
     this.#checkIndexValidation(index);
 
-    if (index === 0) return this.insertHead(element);
+    if (index === 0) return this.insertHead(value);
 
     let prev = this.indexAt(index - 1);
     if (prev === null) return null;
 
-    prev.next = new LinkedListNode(element, prev.next);
+    prev.next = new LinkedListNode(value, prev.next);
   }
 
   removeAt(index) {
