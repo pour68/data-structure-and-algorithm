@@ -41,31 +41,6 @@ class Dll {
 
     if (index === 0) return this.insertAtHead(element);
 
-    if (index === this.length) return this.insertAtTail();
-
-    // Reach the node at that index
-    let newNode = new Node(value);
-    let previousNode = this.head;
-
-    for (let k = 0; k < index - 1; k++) {
-      previousNode = previousNode.next;
-    }
-
-    let nextNode = previousNode.next;
-
-    newNode.next = nextNode;
-    previousNode.next = newNode;
-    newNode.previous = previousNode;
-    nextNode.previous = newNode;
-
-    this.length++;
-  }
-
-  insertAt(index, element) {
-    this.#checkIndexValidation(index);
-
-    if (index === 0) return this.insertAtHead(element);
-
     if (index === this.length) return this.insertAtTail(element);
 
     let node = new DllNode(this.head, element, this.tail);
@@ -111,7 +86,7 @@ class Dll {
 
     if (index === 0) return this.removeAtHead();
 
-    if (index === this.length) return this.removeAtLast();
+    if (index === this.length - 1) return this.removeAtLast();
 
     let prev = this.indexAt(index - 1);
     if (prev === null) return null;
@@ -134,7 +109,7 @@ class Dll {
     this.length++;
   }
 
-  print() {
+  printRTL() {
     let array = [];
     let container = "";
     let current = this.head;
@@ -143,6 +118,22 @@ class Dll {
       array.push(current.value);
 
       current = current.next;
+    }
+
+    container = array.join(" <-> ");
+
+    return container;
+  }
+
+  printLTR() {
+    let array = [];
+    let container = "";
+    let current = this.tail;
+
+    while (current) {
+      array.push(current.value);
+
+      current = current.prev;
     }
 
     container = array.join(" <-> ");
@@ -161,7 +152,16 @@ let dll = new Dll();
 
 dll.insertAtHead(10);
 dll.insertAtHead(100);
+
 dll.insertAtTail(1000);
 dll.insertAtTail(10000);
 
-console.log(dll.print());
+dll.insertAt(2, 11);
+dll.insertAt(4, 111);
+
+dll.removeAt(5);
+dll.removeAt(0);
+dll.removeAt(1);
+
+console.log(dll.printRTL());
+// console.log(dll.printLTR());
