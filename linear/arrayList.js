@@ -94,12 +94,4 @@ class ArrayList {
   }
 }
 
-let al = new ArrayList();
-
-al.add(10);
-al.add(100);
-al.add(1000);
-
-al.insertAt(0, 10000);
-
-console.log(al.print());
+module.exports = ArrayList;

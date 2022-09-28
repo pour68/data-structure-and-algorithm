@@ -193,11 +193,13 @@ clear() {
 
 ## Hashtable
 
-
-
 ---
 
 ## Heaps
+
+---
+
+## Graphs
 
 ---
 
@@ -210,10 +212,6 @@ clear() {
 ---
 
 ## Tries
-
----
-
-## Graphs
 
 ---
 

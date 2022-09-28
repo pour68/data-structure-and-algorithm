@@ -3,14 +3,14 @@
 // parent: Math.floor((i-1)/2)
 
 class MaxHeap {
-  #list;
+  #heap;
   constructor() {
-    this.#list = [];
+    this.#heap = [];
     this.length = 0;
   }
 
   insert(number) {
-    this.#list[this.length] = number;
+    this.#heap[this.length] = number;
 
     this.length++;
 
@@ -20,8 +20,8 @@ class MaxHeap {
   remove() {
     if (this.#isEmpty()) throw new Error("heap is empty");
 
-    let number = this.#list[0];
-    this.#list[0] = this.#list[this.length - 1];
+    let number = this.#heap[0];
+    this.#heap[0] = this.#heap[this.length - 1];
 
     this.length--;
 
@@ -31,13 +31,13 @@ class MaxHeap {
   }
 
   print() {
-    this.#list.length = this.length;
+    this.#heap.length = this.length;
 
-    return this.#list;
+    return { count: this.length, list: this.#heap };
   }
 
   #heapifyTop(index) {
-    if (this.#hasParent(index) && this.#getParent(index) < this.#list[index]) {
+    if (this.#hasParent(index) && this.#getParent(index) < this.#heap[index]) {
       let parentIndex = this.#getParentIndex(index);
 
       this.#swap(parentIndex, index);
@@ -51,13 +51,13 @@ class MaxHeap {
 
     if (
       this.#hasLeftChild(index) &&
-      this.#list[greatestIndex] < this.#getLeftChild(index)
+      this.#heap[greatestIndex] < this.#getLeftChild(index)
     )
       greatestIndex = this.#getLeftChildIndex(index);
 
     if (
       this.#hasRightChild(index) &&
-      this.#list[greatestIndex] < this.#getRightChild(index)
+      this.#heap[greatestIndex] < this.#getRightChild(index)
     )
       greatestIndex = this.#getRightChildIndex(index);
 
@@ -93,25 +93,33 @@ class MaxHeap {
   }
 
   #getParent(index) {
-    return this.#list[this.#getParentIndex(index)];
+    return this.#heap[this.#getParentIndex(index)];
   }
 
   #getLeftChild(index) {
-    return this.#list[this.#getLeftChildIndex(index)];
+    return this.#heap[this.#getLeftChildIndex(index)];
   }
 
   #getRightChild(index) {
-    return this.#list[this.#getRightChildIndex(index)];
+    return this.#heap[this.#getRightChildIndex(index)];
   }
 
-  #swap(index1, index2) {
-    [this.#list[index1], this.#list[index2]] = [
-      this.#list[index2],
-      this.#list[index1],
-    ];
+  #swap(i1, i2) {
+    [this.#heap[i1], this.#heap[i2]] = [this.#heap[i2], this.#heap[i1]];
   }
 
   #isEmpty() {
     return this.length === 0;
   }
 }
+
+const mh = new MaxHeap();
+
+mh.insert(76);
+mh.insert(6);
+mh.insert(11);
+mh.insert(43);
+mh.insert(64);
+mh.insert(24);
+
+console.log(mh.print());

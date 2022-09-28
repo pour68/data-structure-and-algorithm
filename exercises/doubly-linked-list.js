@@ -49,10 +49,10 @@ class Dll {
     let next = prev.next;
     if (prev === null) return null;
 
-    node.next = next;
     prev.next = node;
-    node.prev = prev;
     next.prev = node;
+    node.prev = prev;
+    node.next = next;
 
     this.length++;
   }
@@ -74,7 +74,7 @@ class Dll {
     this.length--;
   }
 
-  removeAtLast() {
+  removeAtTail() {
     this.tail = this.tail.prev;
     this.tail.next = null;
 
@@ -86,13 +86,21 @@ class Dll {
 
     if (index === 0) return this.removeAtHead();
 
-    if (index === this.length - 1) return this.removeAtLast();
+    if (index === this.length - 1) return this.removeAtTail();
 
-    let prev = this.indexAt(index - 1);
-    if (prev === null) return null;
+    // let prev = this.indexAt(index - 1);
+    // if (prev === null) return null;
 
-    let removeNode = prev.next;
-    let next = removeNode.next;
+    // let current = prev.next;
+    // let next = current.next;
+
+    // prev.next = next;
+    // next.prev = prev;
+
+    let current = this.indexAt(index);
+
+    let prev = current.prev;
+    let next = current.next;
 
     prev.next = next;
     next.prev = prev;

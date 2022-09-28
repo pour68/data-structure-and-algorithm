@@ -54,7 +54,8 @@ class Cll {
 
     this.length--;
 
-    this.#findLatestNodeAndUpdateNextProp();
+    let latestIndex = this.length - 1;
+    if (latestIndex === index) this.#findLatestNodeAndUpdateNextProp();
   }
 
   indexAt(index) {
@@ -92,6 +93,7 @@ class Cll {
 
   #findLatestNodeAndUpdateNextProp() {
     let latestIndex = this.length - 1;
+
     if (latestIndex < 1) this.head.next = this.head;
     else {
       let latestNode = this.indexAt(latestIndex);
