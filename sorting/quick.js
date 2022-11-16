@@ -3,6 +3,7 @@ class Quick {
     this.step = 0;
   }
 
+  // o(n^2)
   sort(list) {
     if (list.length <= 1) return list;
 
@@ -18,8 +19,8 @@ class Quick {
     }
 
     if (left.length > 0 && right.length > 0)
-      return [...this.quick(left), pivot, ...this.quick(right)];
-    else if (left.length > 0) return [...this.quick(left), pivot];
-    else return [pivot, ...this.quick(right)];
+      return [...this.sort(left), pivot, ...this.sort(right)];
+    else if (left.length > 0) return [...this.sort(left), pivot];
+    else return [pivot, ...this.sort(right)];
   }
 }

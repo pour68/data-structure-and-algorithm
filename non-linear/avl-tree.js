@@ -1,3 +1,5 @@
+const { Touchscreen } = require("puppeteer");
+
 class Node {
   constructor(data) {
     this.left = null;
@@ -11,6 +13,8 @@ class Node {
     if (data < node.data) node.left = this.insert(data, node.left);
     else if (data > node.data) node.right = this.insert(data, node.right);
 
+    this.length++;
+
     return this.#rotate(node);
   }
 
@@ -19,7 +23,7 @@ class Node {
     else if (data > node.data && node.right)
       node.right = this.delete(data, node.right);
     else {
-      if (node == node.data) {
+      if (data == node.data) {
         if (node.right && node.left) {
           let min = this.findMin(node.right);
           node.data = min;
@@ -32,6 +36,30 @@ class Node {
 
     return this.#rotate(node);
   }
+
+  inOrder(current) {
+    if (current) {
+      this.inOrder(current.left);
+      console.log(current.data);
+      this.inOrder(current.right);
+    }
+  }
+
+  findMin(root) {
+    let current = root;
+
+    if (root.left) current = this.findMin(current.left);
+
+    return current.data;
+  }
+
+  // findMin(root) {
+  //   let current = root;
+
+  //   while (current.left != null) current = current.left;
+
+  //   return current.data;
+  // }
 
   #rotate(node) {
     node.height =
@@ -61,6 +89,7 @@ class Node {
   #leftRotate(x) {
     const y = x.right;
     const yLeftChild = y.left;
+
     y.left = x;
     x.right = yLeftChild;
 
@@ -73,6 +102,7 @@ class Node {
   #rightRotate(x) {
     const y = x.left;
     const yRightChild = y.right;
+
     y.right = x;
     x.left = yRightChild;
 
@@ -82,7 +112,7 @@ class Node {
     return y;
   }
 
-  #getHeight() {
+  #getHeight(node) {
     return node == null ? -1 : node.height;
   }
 
@@ -103,5 +133,34 @@ class AVLTree {
 
   delete(data) {
     if (this.root) this.root = this.root.delete(data, this.root);
+    else throw new Error("AVL Tree is empty.");
+  }
+
+  inOrder() {
+    if (this.root) this.root.inOrder(this.root);
   }
 }
+
+let avl = new AVLTree();
+
+avl.insert(13);
+avl.insert(10);
+avl.insert(15);
+avl.insert(5);
+avl.insert(11);
+avl.insert(16);
+avl.insert(4);
+avl.insert(8);
+avl.insert(3);
+
+avl.delete(3);
+avl.delete(4);
+avl.delete(5);
+avl.delete(8);
+avl.delete(10);
+avl.delete(11);
+avl.delete(13);
+avl.delete(15);
+avl.delete(16);
+
+avl.inOrder();

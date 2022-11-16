@@ -1,12 +1,12 @@
 class Binary {
   #list;
   constructor() {
-    this.#list = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    this.#list = [10, 100, 1000, 5000, 10000, 50000, 100000];
     this.step = 0;
   }
 
   search(value) {
-    let index = this.#searchHelper(value, start, last);
+    let index = this.#searchHelper(value);
 
     return index;
   }
@@ -19,23 +19,23 @@ class Binary {
 
     if (this.#list[middle] === value) return middle;
     else if (value < this.#list[middle])
-      return this.#binaryHelper(value, start, middle - 1);
-    else return this.#binaryHelper(value, middle + 1, last);
+      return this.#searchHelper(value, start, middle - 1);
+    else return this.#searchHelper(value, middle + 1, last);
   }
 
   // non recursive
   #search(value) {
-    let start = 0;
-    let last = this.#list.length - 1;
+    let startIndex = 0;
+    let lastIndex = this.#list.length - 1;
 
-    while (start <= last) {
-      let middle = Math.floor((start + last) / 2);
+    while (startIndex <= lastIndex) {
+      let middleIndex = Math.floor((startIndex + lastIndex) / 2);
 
       this.step++;
 
-      if (this.#list[middle] === value) return middle;
-      else if (value < this.#list[middle]) last = middle - 1;
-      else start = middle + 1;
+      if (this.#list[middleIndex] === value) return middleIndex;
+      else if (value < this.#list[middleIndex]) lastIndex = middleIndex - 1;
+      else startIndex = middleIndex + 1;
     }
 
     return -1;

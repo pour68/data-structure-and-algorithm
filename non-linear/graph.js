@@ -13,6 +13,10 @@ class Graph {
   }
 
   addEdge(source, destination) {
+    this.#checkNodeExist(source);
+
+    this.#checkNodeExist(destination);
+
     this.#nodes.get(source).push(destination);
     this.#nodes.get(destination).push(source);
   }
@@ -90,6 +94,11 @@ class Graph {
   print() {
     return this.#nodes;
   }
+
+  #checkNodeExist(node) {
+    if (!this.#nodes.has(node))
+      throw new Error(`"${node}" node not exist in the graph.`);
+  }
 }
 
 const g = new Graph();
@@ -113,8 +122,29 @@ g.addEdge("D", "G");
 g.addEdge("E", "G");
 g.addEdge("F", "G");
 
-g.removeEdge("S", "A");
-g.removeEdge("A", "D");
-g.removeNode("A");
+// g.removeEdge();
 
-console.log(g.print());
+g.removeEdge("A", "D");
+g.removeEdge("D", "G");
+
+g.removeNode("D");
+
+console.log(g.dfs("S", "G"));
+
+// g.addNode("IR");
+// g.addNode("TUR");
+// g.addNode("UK");
+// g.addNode("US");
+// g.addNode("UA");
+
+// g.addEdge("IR", "UA");
+// g.addEdge("IR", "UK");
+// g.addEdge("IR", "TUR");
+
+// g.addEdge("TUR", "UK");
+// g.addEdge("TUR", "UA");
+
+// g.addEdge("UK", "UA");
+// g.addEdge("UK", "US");
+
+// console.log(g.bfs("TUR", "US"));

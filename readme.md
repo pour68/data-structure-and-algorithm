@@ -10,6 +10,16 @@ In computer science, a data structure is a data organization, management, and st
 
 ---
 
+## Algorithm
+
+set of steps/instructions for completing a task.
+
+clearly defined problem statement, input and output.
+
+correctness and efficiency
+
+---
+
 ## Bio O notation (Time/Space complexity)
 
 - constant
@@ -220,3 +230,10 @@ clear() {
 ---
 
 ## Searching algorithm
+
+linear:
+
+step 1: start at beginning
+step 2: move sequentially
+step 3: compare current value with target
+step 4: reach end of the list

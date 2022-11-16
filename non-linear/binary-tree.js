@@ -135,3 +135,29 @@ class BinaryTree {
     if (this.root) this.root.postOrder(this.root);
   }
 }
+
+const bt = new BinaryTree();
+
+bt.insert(50);
+bt.insert(25);
+bt.insert(75);
+bt.insert(15);
+bt.insert(35);
+bt.insert(65);
+bt.insert(85);
+
+bt.delete(35);
+bt.delete(75);
+bt.delete(50);
+
+// bt.insert(65);
+// bt.insert(35);
+// bt.insert(85);
+// bt.insert(25);
+// bt.insert(52);
+// bt.insert(73);
+// bt.insert(99);
+// bt.insert(21);
+// bt.insert(30);
+
+console.log(bt.find(25));
