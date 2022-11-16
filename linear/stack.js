@@ -5,8 +5,8 @@ class Stack {
     this.length = 0;
   }
 
-  push(element) {
-    this.#list.push(element);
+  push(value) {
+    this.#list.push(value);
 
     this.length++;
   }
@@ -25,11 +25,11 @@ class Stack {
     return this.#list[this.length - 1];
   }
 
-  contains(element) {
+  contains(value) {
     let isFind = false;
 
     for (let i = 0; i < this.#list.length; i++)
-      if (this.#list[i] === element) isFind = true;
+      if (this.#list[i] === value) isFind = true;
 
     return isFind;
   }
@@ -48,5 +48,3 @@ class Stack {
     return this.#list.length === 0;
   }
 }
-
-module.exports = Stack;

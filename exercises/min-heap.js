@@ -1,8 +1,5 @@
-// left child: 2*i+1
-// right child: 2*i+2
-// parent: Math.floor((i-1)/2)
-
-class MaxHeap {
+// non-recursive implementation of minheap
+class MinHeap {
   #heap;
   constructor() {
     this.#heap = [];
@@ -14,7 +11,7 @@ class MaxHeap {
 
     this.length++;
 
-    this.#heapifyTop(this.length - 1);
+    this.#heapifyToTop(this.length - 1);
   }
 
   remove() {
@@ -25,7 +22,7 @@ class MaxHeap {
 
     this.length--;
 
-    this.#heapifyDown(0);
+    this.#heapifyToDown(0);
 
     return number;
   }
@@ -36,35 +33,37 @@ class MaxHeap {
     return { count: this.length, list: this.#heap };
   }
 
-  #heapifyTop(index) {
-    if (this.#hasParent(index) && this.#getParent(index) < this.#heap[index]) {
+  #heapifyToTop() {
+    let index = this.length - 1;
+
+    while (
+      this.#hasParent(index) &&
+      this.#getParent(index) > this.#heap[index]
+    ) {
       let parentIndex = this.#getParentIndex(index);
 
       this.#swap(parentIndex, index);
 
-      this.#heapifyTop(parentIndex);
+      index = parentIndex;
     }
   }
 
-  #heapifyDown(index) {
-    let greatestIndex = index;
+  #heapifyToDown() {
+    let index = 0;
 
-    if (
-      this.#hasLeftChild(index) &&
-      this.#heap[greatestIndex] < this.#getLeftChild(index)
-    )
-      greatestIndex = this.#getLeftChildIndex(index);
+    while (this.#hasLeftChild(index)) {
+      let smallerChildIndex = this.#getLeftChildIndex(index);
 
-    if (
-      this.#hasRightChild(index) &&
-      this.#heap[greatestIndex] < this.#getRightChild(index)
-    )
-      greatestIndex = this.#getRightChildIndex(index);
+      if (
+        this.#hasRightChild(index) &&
+        this.#getRightChild(index) < this.#getLeftChild(index)
+      )
+        smallerChildIndex = this.#getRightChildIndex(index);
 
-    if (greatestIndex !== index) {
-      this.#swap(index, greatestIndex);
+      if (this.#heap[index] < this.#heap[smallerChildIndex]) break;
+      else this.#swap(index, smallerChildIndex);
 
-      this.#heapifyDown(greatestIndex);
+      index = smallerChildIndex;
     }
   }
 

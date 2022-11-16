@@ -13,11 +13,11 @@ class Dll {
     this.length = 0;
   }
 
-  insertAtHead(element) {
+  insertAtHead(value) {
     if (this.head === null && this.tail === null)
-      return this.#AddFirstElement(element);
+      return this.#AddFirstElement(value);
 
-    let node = new DllNode(null, element, null);
+    let node = new DllNode(null, value, null);
 
     this.head.prev = node;
     node.next = this.head;
@@ -26,8 +26,8 @@ class Dll {
     this.length++;
   }
 
-  insertAtTail(element) {
-    let node = new DllNode(null, element, null);
+  insertAtTail(value) {
+    let node = new DllNode(null, value, null);
 
     this.tail.next = node;
     node.prev = this.tail;
@@ -36,14 +36,14 @@ class Dll {
     this.length++;
   }
 
-  insertAt(index, element) {
+  insertAt(index, value) {
     this.#checkIndexValidation(index);
 
-    if (index === 0) return this.insertAtHead(element);
+    if (index === 0) return this.insertAtHead(value);
 
-    if (index === this.length) return this.insertAtTail(element);
+    if (index === this.length) return this.insertAtTail(value);
 
-    let node = new DllNode(this.head, element, this.tail);
+    let node = new DllNode(this.head, value, this.tail);
     let prev = this.indexAt(index - 1);
 
     let next = prev.next;
@@ -58,6 +58,8 @@ class Dll {
   }
 
   indexAt(index) {
+    if (this.length === 0) throw new Error("LinkedList is empty.");
+
     this.#checkIndexValidation(index);
 
     let current = this.head;
@@ -108,8 +110,8 @@ class Dll {
     this.length--;
   }
 
-  #AddFirstElement(element) {
-    let node = new DllNode(null, element, null);
+  #AddFirstElement(value) {
+    let node = new DllNode(null, value, null);
 
     this.head = node;
     this.tail = this.head;
@@ -155,21 +157,3 @@ class Dll {
     if (!Number.isInteger(index)) throw new Error("enter valid integer index");
   }
 }
-
-let dll = new Dll();
-
-dll.insertAtHead(10);
-dll.insertAtHead(100);
-
-dll.insertAtTail(1000);
-dll.insertAtTail(10000);
-
-dll.insertAt(2, 11);
-dll.insertAt(4, 111);
-
-dll.removeAt(5);
-dll.removeAt(0);
-dll.removeAt(1);
-
-console.log(dll.printRTL());
-// console.log(dll.printLTR());

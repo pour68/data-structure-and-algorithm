@@ -5,8 +5,8 @@ class Queue {
     this.length = 0;
   }
 
-  enqueue(element) {
-    this.#list.push(element);
+  enqueue(value) {
+    this.#list.push(value);
 
     this.length++;
   }
@@ -19,17 +19,13 @@ class Queue {
     this.length--;
   }
 
-  contains(element) {
+  contains(value) {
     let isFind = false;
 
     for (let i = 0; i < this.#list.length; i++)
-      if (this.#list[i] === element) isFind = true;
+      if (this.#list[i] === value) isFind = true;
 
     return isFind;
-  }
-
-  #isEmpty() {
-    return this.#list.length === 0;
   }
 
   print() {
@@ -41,16 +37,8 @@ class Queue {
 
     return container;
   }
+
+  #isEmpty() {
+    return this.#list.length === 0;
+  }
 }
-
-const queue = new Queue();
-
-queue.enqueue(10);
-queue.enqueue(100);
-queue.enqueue(1000);
-
-queue.dequeue();
-queue.dequeue();
-queue.dequeue();
-
-console.log(queue.print());

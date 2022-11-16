@@ -5,37 +5,37 @@ class ArrayList {
     this.length = 0;
   }
 
-  add(element) {
-    this.#list.push(element);
+  add(value) {
+    this.#list.push(value);
 
     this.length++;
   }
 
-  insertAt(index, element) {
+  insertAt(index, value) {
     this.#checkIndexValidation(index);
 
     for (let i = this.length - 1; i >= index; i--)
       this.#list[i + 1] = this.#list[i];
 
-    this.#list[index] = element;
+    this.#list[index] = value;
 
     this.length++;
   }
 
-  remove(element) {
-    if (this.contains(element)) {
-      let index = this.indexOf(element);
+  remove(value) {
+    if (this.contains(value)) {
+      let index = this.indexOf(value);
 
       this.removeAt(index);
     }
 
-    throw new Error(`The ${element} not exist.`);
+    throw new Error(`The ${value} not exist.`);
   }
 
-  indexOf(element) {
+  indexOf(value) {
     let index = -1;
     for (let i = 0; i < this.length; i++)
-      if (this.#list[i] === element) index = i;
+      if (this.#list[i] === value) index = i;
 
     return index;
   }
@@ -56,11 +56,11 @@ class ArrayList {
     return this.#list[index];
   }
 
-  contains(element) {
+  contains(value) {
     let isFind = false;
 
     for (let i = 0; i < this.#list.length; i++)
-      if (this.#list[i] === element) isFind = true;
+      if (this.#list[i] === value) isFind = true;
 
     return isFind;
   }
@@ -93,5 +93,3 @@ class ArrayList {
     return this.#list.length === 0;
   }
 }
-
-module.exports = ArrayList;

@@ -77,19 +77,3 @@ class HashTable {
     if (key.length === 0) throw new Error("enter valid key.");
   }
 }
-
-let ht = new HashTable(10);
-
-ht.set("mehdi", "09209762004");
-ht.set("shahab", "09209762003");
-ht.set("pouria", "09354425459");
-ht.set("ali", "09209762001");
-ht.set("maryam", "09125452548");
-ht.set("gholi", "09125452548");
-ht.set("ranga", "09125452548");
-
-console.log(ht.get("mehdi"));
-
-console.log(ht.remove("mehdi"));
-
-ht.print();

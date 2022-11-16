@@ -28,13 +28,13 @@ class LinkedList {
   }
 
   indexAt(index) {
+    if (this.length === 0) throw new Error("LinkedList is empty.");
+
     this.#checkIndexValidation(index);
 
     let current = this.head;
 
-    for (let i = 0; i < index; i++) {
-      current = current.next;
-    }
+    for (let i = 0; i < index; i++) current = current.next;
 
     return current;
   }

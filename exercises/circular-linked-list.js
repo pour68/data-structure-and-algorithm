@@ -43,6 +43,8 @@ class Cll {
   }
 
   removeAt(index) {
+    if (this.length === 0) throw new Error("LinkedList is empty.");
+
     this.#checkIndexValidation(index);
 
     if (index === 0) return this.removeHead();
@@ -111,12 +113,3 @@ class Cll {
     return this.length === 0;
   }
 }
-
-let cll = new Cll();
-
-cll.insertAtHead(10);
-cll.insertAtHead(100);
-cll.insertAtHead(1000);
-cll.insertAtHead(10000);
-
-console.log(cll.print());
