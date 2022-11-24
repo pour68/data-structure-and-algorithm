@@ -1,7 +1,3 @@
-// left child: 2*i+1
-// right child: 2*i+2
-// parent: Math.floor((i-1)/2)
-
 class MaxHeap {
   #heap;
   constructor() {

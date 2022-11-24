@@ -36,6 +36,43 @@ Definition: An array is a number of elements in a specific order, typically all 
 
 ---
 
+### FixedArray
+
+step 1: create FixedArray class with list and count properties
+step 2: default value of list is [] and count feed from constructor
+
+add(item) {
+    1. if list length and count is equal then array is full
+    2. add item at the end of array
+}
+
+remove() {
+    1. check if array is empty
+    2. remove from end of array
+}
+
+getLatestItem() {
+    1. check if array is empty
+    2. find the latest item and return
+}
+
+atIndex(index) {
+    1. check index validation
+    2. find and return by index
+}
+
+getAll() {
+    1. return array
+}
+
+isEmpty() {
+    1. if array is empty generate and error
+}
+
+Note: isEmpty is helper method.
+
+---
+
 ### ArrayList
 
 step 1: create ArrayList class with list and length properties
@@ -89,43 +126,6 @@ clear() {
     1. set list to default value
     2. set length to 0
 }
-
----
-
-### FixedArray
-
-step 1: create FixedArray class with list and count properties
-step 2: default value of list is [] and count feed from constructor
-
-add(item) {
-    1. if list length and count is equal then array is full
-    2. add item at the end of array
-}
-
-remove() {
-    1. check if array is empty
-    2. remove from end of array
-}
-
-getLatestItem() {
-    1. check if array is empty
-    2. find the latest item and return
-}
-
-atIndex(index) {
-    1. check index validation
-    2. find and return by index
-}
-
-getAll() {
-    1. return array
-}
-
-isEmpty() {
-    1. if array is empty generate and error
-}
-
-Note: isEmpty is helper method.
 
 ---
 
@@ -512,7 +512,12 @@ Note: hash(key) and checkStringValidation(key) are helper methods.
 
 ### Heaps
 
+- every parent node, at most can have only 2 children
+- must be a complete tree, it most be filled from left to right and every level must be full, with the exception of last level not needing to be full
+
 #### MinHeap
+
+- every parent's key must be smaller than its children nodes
 
 step 1: create MinHeap class with heap and length properties
 step 2: heap and length default values are [] and 0 respectively
@@ -588,6 +593,8 @@ Note:
 getParentIndex(index), getLeftChildIndex(index), getRightChildIndex(index), hasParent(index), hasLeftChild(index), hasRightChild(index), getParent(index), getLeftChild(index), getRightChild(index), swap(i1, i2), isEmpty() are helper methods
 
 #### MaxHeap
+
+- every parent's key must be greater than its children nodes
 
 step 1: create MinHeap class with heap and length properties
 step 2: heap and length default values are [] and 0 respectively
